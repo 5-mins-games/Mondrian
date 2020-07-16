@@ -78,7 +78,9 @@ public class Node : MonoBehaviour
         {
             ApplyForce(n.transform.position, transform.position, ref curVel);
         }
-        ApplyForce(Vector3.zero, transform.position, ref curVel);
+        float closeCenter = Mathf.Pow(2.0f, neighbours.Count);
+
+        ApplyForce(Vector3.zero, transform.position, ref curVel, closeCenter);
 
         transform.position += curVel;
     }
@@ -90,7 +92,7 @@ public class Node : MonoBehaviour
         DrawEdge();
     }
 
-    private void ApplyForce(Vector3 p1, Vector3 p2, ref Vector3 curVel)
+    private void ApplyForce(Vector3 p1, Vector3 p2, ref Vector3 curVel, float scale = 1.0f)
     {
         float distance = Vector3.Distance(p1, p2);
 
@@ -103,7 +105,7 @@ public class Node : MonoBehaviour
         // pull closer
         if (distance - scaleDistance > 0.01f)
         {
-            curVel += delta * delta * direction;
+            curVel += delta * delta * direction * scale;
         }
 
         // push away

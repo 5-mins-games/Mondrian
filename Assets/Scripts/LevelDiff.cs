@@ -22,8 +22,8 @@ public static class LevelDiff
 		new LevelConf(1, 2, 2, .2f),
 		new LevelConf(1, 2, 3, .3f),
 		new LevelConf(1, 3, 3, .3f),
-		new LevelConf(2, 3, 4, .4f),
-		new LevelConf(2, 4, 4, .6f),
+		new LevelConf(1, 3, 4, .4f),
+		new LevelConf(1, 4, 4, .6f),
 	};
 }
 
