@@ -22,7 +22,21 @@ public static class LevelDiff
 		new LevelConf(1, 2, 2, .2f),
 		new LevelConf(1, 2, 3, .3f),
 		new LevelConf(1, 3, 3, .3f),
-		new LevelConf(1, 3, 4, .4f),
-		new LevelConf(1, 4, 4, .5f),
+		new LevelConf(2, 3, 4, .4f),
+		new LevelConf(2, 4, 4, .6f),
+	};
+}
+
+public static class LevelText
+{
+	public static string[] text = {
+		"",
+		"Try click one, see what happens.",
+		"Now, match the color.",
+		"Good. Now, try again...",
+		"Nice. You know what to do now.",
+		"More colors' coming.",
+		"This is close to the end of the journey...",
+		"You've done all of them. Thanks for playing.",
 	};
 }

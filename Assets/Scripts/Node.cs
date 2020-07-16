@@ -293,6 +293,8 @@ public class Node : MonoBehaviour
             return;
         }
         Step();
+
+        SoundManager.instance.PlayClick();
     }
     #endregion
 }
