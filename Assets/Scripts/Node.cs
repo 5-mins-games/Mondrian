@@ -271,6 +271,7 @@ public class Node : MonoBehaviour
 
     void OnMouseDown()
     {
+        if (GameManager.instance.locked) return;
         screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
         offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
         mouseEnter = Time.time;
@@ -278,6 +279,7 @@ public class Node : MonoBehaviour
 
     void OnMouseDrag()
     {
+        if (GameManager.instance.locked) return;
         Vector3 cursorPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
         Vector3 cursorPosition = Camera.main.ScreenToWorldPoint(cursorPoint) + offset;
         transform.position = cursorPosition;
@@ -286,6 +288,7 @@ public class Node : MonoBehaviour
 
     void OnMouseUp()
     {
+        if (GameManager.instance.locked) return;
         if (dragging)
         {
             dragging = false;

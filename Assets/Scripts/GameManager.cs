@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class GameManager : MonoBehaviour
 	private int maxElapse;
 	private readonly Color origin = new Color(0.85f, 0.85f, 0.85f, 1.0f);
 	private readonly Color fade   = new Color(0.33f, 0.33f, 0.33f, 0.1f);
+
+	internal bool locked = false;
 
 	private int level;
 
@@ -65,9 +68,27 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("Generate new level: " + level);
 
-		Map.instance.ProgressLevel(LevelDiff.config[level]);
+		IEnumerator coro = ProgressLevelDelay(LevelDiff.config[level], 2.0f);
+
+		StartCoroutine(coro);
 
 		ShowText(LevelText.text[level]);
+	}
+
+	private IEnumerator ProgressLevelDelay(LevelConf config, float delay)
+	{
+		locked = true;
+
+		while (true)
+        {
+            yield return new WaitForSeconds(delay);
+
+	        Map.instance.ProgressLevel(config);
+	        break;
+        }
+        locked = false;
+
+        yield return null;
 	}
 
 	public void EndLevel()
@@ -77,8 +98,6 @@ public class GameManager : MonoBehaviour
 		ShowText(LevelText.text[level], 2000);
 
 		Map.instance.Destroy();
-
-		// Application.Quit();
 	}
 	#endregion
 

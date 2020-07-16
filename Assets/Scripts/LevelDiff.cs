@@ -18,7 +18,7 @@ public class LevelConf
 public static class LevelDiff
 {
 	public static LevelConf[] config = {
-		new LevelConf(2, 2, 2, .2f),
+		new LevelConf(3, 2, 2, .2f),
 		new LevelConf(1, 2, 2, .2f),
 		new LevelConf(1, 2, 3, .3f),
 		new LevelConf(1, 3, 3, .3f),
