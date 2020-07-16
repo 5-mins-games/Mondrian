@@ -54,4 +54,23 @@ public class GameManager : MonoBehaviour
 		Application.Quit();
 	}
 	#endregion
+
+
+
+	#region Game Management
+
+	public void ExitGame()
+	{
+		Application.Quit();
+	}
+
+	public void RestartGame()
+	{
+		Map.instance.Destroy();
+
+		level = 0;
+
+		ProgressLevel();
+	}
+	#endregion
 }

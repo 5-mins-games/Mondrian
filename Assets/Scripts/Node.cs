@@ -16,6 +16,8 @@ public class Node : MonoBehaviour
     public readonly List<Node> neighbours = new List<Node>();
     public bool debug = true;
 
+    public GameObject shadowPrefab;
+
 
     #region MonoBehaviour
 
@@ -24,6 +26,8 @@ public class Node : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         SetStatus();
+
+        CreateShadow();
     }
 
     private void Update()
@@ -164,11 +168,28 @@ public class Node : MonoBehaviour
 
     #region Draw Graph
 
+    private void CreateShadow()
+    {
+        if (shadowPrefab == null) return;
+
+        Vector3 pos = transform.position;
+
+        pos.x += .4f;
+        pos.y -= .4f;
+        pos.z += .1f;
+
+        GameObject go = Instantiate(shadowPrefab, pos, transform.rotation);
+
+        go.transform.SetParent(transform);
+    }
+
+
+
     private void RemoveEdge()
     {
         foreach (Transform child in transform)
         {
-            Destroy(child.gameObject);
+            if (child.gameObject.name == "Line") Destroy(child.gameObject);
         }
     }
 
@@ -194,6 +215,8 @@ public class Node : MonoBehaviour
     private void DrawLine(Vector3 p1, Vector3 p2, Color color, float width = .05f, bool dash = false)
     {
         GameObject line = new GameObject();
+
+        line.name = "Line";
 
         line.transform.SetParent(transform);
 

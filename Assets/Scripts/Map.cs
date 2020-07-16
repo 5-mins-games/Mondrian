@@ -22,6 +22,7 @@ public class Map : MonoBehaviour
 
     private readonly List<GameObject> nodes = new List<GameObject>();
     private Slider slider;
+    private float baseDistanceOriginal;
 
     void Start()
     {
@@ -34,6 +35,8 @@ public class Map : MonoBehaviour
         slider = GameObject.FindWithTag("DistanceSlider").GetComponent<Slider>();
 
         Debug.Log("Map iniatialized. instance: " + instance);
+
+        baseDistanceOriginal = baseDistance;
 
         GameManager.instance.ProgressLevel();
     }
@@ -85,6 +88,20 @@ public class Map : MonoBehaviour
                 return false;
         }
         return true;
+    }
+
+    public void Destroy()
+    {
+        Debug.Log("Destroy graph.");
+
+        nodes.Clear();
+
+        foreach (Transform n in transform)
+        {
+            Destroy(n.gameObject);
+        }
+
+        baseDistance = baseDistanceOriginal;
     }
     #endregion
 
