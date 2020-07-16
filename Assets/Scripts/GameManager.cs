@@ -93,9 +93,7 @@ public class GameManager : MonoBehaviour
 
 	public void EndLevel()
 	{
-		Debug.Log("Show credits and exit.");
-
-		ShowText(LevelText.text[level], 2000);
+		ShowText(LevelText.text[level + 1], 2000);
 
 		Map.instance.Destroy();
 	}
