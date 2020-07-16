@@ -36,7 +36,6 @@ public static class LevelText
 		"Good. Now, try again...",
 		"Nice. You know what to do now.",
 		"More colors' coming.",
-		"This is close to the end of the journey...",
 		"You've done all of them. Thanks for playing.",
 	};
 }
